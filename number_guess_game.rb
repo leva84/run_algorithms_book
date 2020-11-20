@@ -3,26 +3,21 @@ class NumberGuessGame
 
   def initialize
     @count = 0
-    @number = conditions
-    @numbers = (1..@number)
-    @sample = @numbers.to_a.sample
-    abort('Ты наверняка шутишь?)') if @number <= 1
-  end
-
-  def count
-    @count += 1
-  end
-
-  def conditions
-    puts 'Среди скольки вариантов будем искать?'
-    gets.chomp.to_i
   end
 
   def run
+    puts 'Среди скольки вариантов будем искать?'
+    number = gets.chomp.to_i
+
+    abort('Ты наверняка шутишь?)') if number <= 1
+    sample = (1..number).to_a.sample
+
     loop do
       puts "Угадайте число среди #{number} вариантов"
-      puts "Попытка №#{count}"
+      puts "Попытка №#{@count += 1}"
+
       choice = gets.chomp.to_i
+
       abort('Вы выйграли!!!') if choice == sample
       sample > choice ? (puts 'Малова-то будет)') : (puts 'Многова-то будет)')
     end
